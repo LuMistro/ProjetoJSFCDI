@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+   <title>Cadastro de Pessoas</title>
+   <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+
+   <div class="container">
+
+      <h:messages globalOnly="true" infoClass="mensagemInfo" />
+
+      <h:form>
+
+         <h:outputLabel value="Nome " for="nome" />
+         <h:message for="nome" errorClass="erroForm"></h:message>
+         <h:inputText id="nome" required="true"
+                      requiredMessage="O nome deve ser preenchido"
+                      value="#{cadastroPessoaController.pessoa.nome}"
+                      pt:placeholder="Informe seu nome" />
+
+         <h:outputLabel value="E-mail " for="email" />
+         <h:message for="email" errorClass="erroForm"></h:message>
+         <h:inputText id="email" required="true"
+                      requiredMessage="O email deve ser preenchido"
+                      value="#{cadastroPessoaController.pessoa.email}"
+                      pt:placeholder="Informe seu e-mail" />
+
+         <h:outputLabel value="Nascimento " for="nascimento" />
+         <h:message for="nascimento" errorClass="erroForm"></h:message>
+         <h:inputText id="nascimento" required="true"
+                      requiredMessage="Data de nascimento deve ser preenchida"
+                      converterMessage="Data no formato inválido. Use: dd/mm/aaaa"
+                      value="#{cadastroPessoaController.pessoa.nascimento}"
+                      pt:placeholder="Informe sua data de nascimento">
+            <f:convertDateTime pattern="dd/MM/yyyy"
+                               timeZone="#{initParam.timezone}" />
+         </h:inputText>
+
+         <h:commandButton value="Salvar" styleClass="cadastrar"
+                          action="#{cadastroPessoaController.cadastrar}" />
+
+         <h:commandButton value="Limpar" styleClass="limpar"
+                          action="#{cadastroPessoaController.limpar}" />
+      </h:form>
+      <hr></hr>
+      <h:form>
+         <h:dataTable var="p" value="#{cadastroPessoaController.pessoas}">
+
+            <h:column>
+               <f:facet name="header">Nome</f:facet>
+               <h:outputText value="#{p.nome}" />
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">E-mail</f:facet>
+               <h:outputText value="#{p.email}" />
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Nascimento</f:facet>
+               <h:outputText value="#{p.nascimento}">
+                  <f:convertDateTime pattern="dd/MM/yyyy"
+                                     timeZone="#{initParam.timezone}" />
+               </h:outputText>
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Idade</f:facet>
+               <h:outputText value="#{p.idade}" />
+            </h:column>
+
+
+            <h:column headerClass="colunaAcoes">
+               <h:commandButton action="#{cadastroPessoaController.editar}"
+                                image="/resources/imagens/edit-32x32.png">
+                  <f:setPropertyActionListener value="#{p}"
+                                               target="#{cadastroPessoaController.pessoa}"></f:setPropertyActionListener>
+               </h:commandButton>
+               <h:commandButton action="#{cadastroPessoaController.excluir}"
+                                image="/resources/imagens/remove-32x32.png">
+                  <f:setPropertyActionListener value="#{p}"
+                                               target="#{cadastroPessoaController.pessoa}"></f:setPropertyActionListener>
+               </h:commandButton>
+            </h:column>
+         </h:dataTable>
+      </h:form>
+   </div>
+</h:body>
+</html>
