@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+    <title>Cadastro de Profissão</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<h:body>
+
+    <div class="container">
+
+        <h:messages globalOnly="true" infoClass="mensagemInfo"/>
+
+        <h:form>
+
+            <h:outputLabel value="Nome da profissão " for="profissao"/>
+            <h:message for="profissao" errorClass="erroForm"></h:message>
+            <h:inputText id="profissao" required="true"
+                         requiredMessage="O nome da profissão deve ser preenchido"
+                         value="#{cadastroProfissaoController.profissao.nome}"
+                         pt:placeholder="Informe o nome da profissão"/>
+
+            <h:outputLabel value="Descrição " for="descricao"/>
+            <h:message for="descricao" errorClass="erroForm"></h:message>
+            <h:inputText id="descricao" required="true"
+                         requiredMessage="A descrição deve ser preenchida"
+                         value="#{cadastroProfissaoController.profissao.descricao}"
+                         pt:placeholder="Informe uma breve descrição"/>
+
+            <h:commandButton value="Salvar" styleClass="cadastrar"
+                             action="#{cadastroProfissaoController.cadastrar}"/>
+
+            <h:commandButton value="Limpar" styleClass="limpar"
+                             action="#{cadastroProfissaoController.limpar}"/>
+        </h:form>
+        <hr></hr>
+        <h:form>
+            <h:dataTable var="p" value="#{cadastroProfissaoController.pessoas}">
+
+                <h:column>
+                    <f:facet name="header">Profissão</f:facet>
+                    <h:outputText value="#{p.nome}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Descrição</f:facet>
+                    <h:outputText value="#{p.descricao}"/>
+                </h:column>
+
+                <h:column headerClass="colunaAcoes">
+                    <h:commandButton action="#{cadastroProfissaoController.editar}"
+                                     image="/resources/imagens/edit-32x32.png">
+                        <f:setPropertyActionListener value="#{p}"
+                                                     target="#{cadastroProfissaoController.profissao}"/>
+                    </h:commandButton>
+                    <h:commandButton action="#{cadastroProfissaoController.excluir}"
+                                     image="/resources/imagens/remove-32x32.png">
+                        <f:setPropertyActionListener value="#{p}"
+                                                     target="#{cadastroProfissaoController.profissao}"/>
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </div>
+</h:body>
+</html>

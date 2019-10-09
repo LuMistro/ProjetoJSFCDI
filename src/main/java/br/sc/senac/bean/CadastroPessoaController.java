@@ -12,21 +12,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@ManagedBean
 @ViewScoped
+@ManagedBean
 public class CadastroPessoaController implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     private Pessoa pessoa;
     private PessoaDao dao;
     private List<Pessoa> pessoas;
-
-//	public CadastroPessoaController() {
-//		pessoa = new Pessoa();
-//		dao = new PessoaDao();
-//		pessoas = new ArrayList<>();
-//	}
 
     @PostConstruct
     public void init() {
@@ -59,7 +53,6 @@ public class CadastroPessoaController implements Serializable {
         } else {
             dao.atualizar(pessoa);
         }
-
         limpar();
         buscar();
     }
@@ -83,4 +76,5 @@ public class CadastroPessoaController implements Serializable {
     public List<Pessoa> getPessoas() {
         return pessoas;
     }
+
 }
