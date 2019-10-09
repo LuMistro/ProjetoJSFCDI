@@ -78,13 +78,15 @@
 
 
                 <h:column headerClass="colunaAcoes">
-                    <h:commandButton action="#{cadastroPessoaController.cadastrar}"
+                    <h:commandButton
                                      image="/resources/imagens/edit-32x32.png">
+<!--                            action="#{cadastroPessoaController.cadastrar}"-->
                         <f:setPropertyActionListener value="#{p}"
                                                      target="#{cadastroPessoaController.pessoa}"/>
                     </h:commandButton>
-                    <h:commandButton action="#{cadastroPessoaController.excluir}"
+                    <h:commandButton
                                      image="/resources/imagens/remove-32x32.png">
+<!--                            action="#{cadastroPessoaController.excluir}"-->
                         <f:setPropertyActionListener value="#{p}"
                                                      target="#{cadastroPessoaController.pessoa}"/>
                     </h:commandButton>

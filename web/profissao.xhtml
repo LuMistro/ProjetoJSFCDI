@@ -40,7 +40,7 @@
         </h:form>
         <hr></hr>
         <h:form>
-            <h:dataTable var="p" value="#{cadastroProfissaoController.pessoas}">
+            <h:dataTable var="p" value="#{cadastroProfissaoController.profissaos}">
 
                 <h:column>
                     <f:facet name="header">Profissão</f:facet>
@@ -54,18 +54,18 @@
 
                 <h:column headerClass="colunaAcoes">
                     <h:commandButton action="#{cadastroProfissaoController.editar}"
-                                     image="/resources/imagens/edit-32x32.png">
-                        <f:setPropertyActionListener value="#{p}"
-                                                     target="#{cadastroProfissaoController.profissao}"/>
-                    </h:commandButton>
-                    <h:commandButton action="#{cadastroProfissaoController.excluir}"
-                                     image="/resources/imagens/remove-32x32.png">
-                        <f:setPropertyActionListener value="#{p}"
-                                                     target="#{cadastroProfissaoController.profissao}"/>
-                    </h:commandButton>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-    </div>
-</h:body>
-</html>
+                    image="/resources/imagens/edit-32x32.png">
+                    <f:setPropertyActionListener value="#{p}"
+                                                 target="#{cadastroProfissaoController.profissao}"/>
+                </h:commandButton>
+                <h:commandButton  action="#{cadastroProfissaoController.excluir}"
+                image="/resources/imagens/remove-32x32.png">
+                <f:setPropertyActionListener value="#{p}"
+                                             target="#{cadastroProfissaoController.profissao}"/>
+            </h:commandButton>
+        </h:column>
+    </h:dataTable>
+</h:form>
+</div>
+        </h:body>
+        </html>

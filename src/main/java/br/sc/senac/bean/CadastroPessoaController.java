@@ -43,10 +43,6 @@ public class CadastroPessoaController implements Serializable {
 
     }
 
-    public void editar() {
-        System.out.println("Editou!");
-    }
-
     public void cadastrar() {
         if (pessoa.getId() == null) {
             dao.salvar(pessoa);
